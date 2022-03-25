@@ -2,7 +2,8 @@ require('./config/config')
 const express = require('express');
 const app = express();
 
-app.use(require('./routes/usuario'))
+//Config Global de rutas
+app.use(require('./routes/index'))
 
 const mongoose = require('mongoose');
 
