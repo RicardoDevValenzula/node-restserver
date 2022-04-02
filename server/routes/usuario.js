@@ -12,7 +12,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/usuarios', verificarToken, (req, res) => {
-
     return res.json({
         usuario: req.usuario,
         nombre: req.usuario.nombre,
@@ -77,7 +76,6 @@ app.put('/usuario/:id', [verificarToken, verificaRol], (req, res) => {
     let id = req.params.id;
     let body = _.pick(req.body, ['nombre', 'email', 'img', 'role', 'estado']);
 
-
     Usuario.findByIdAndUpdate(id, body, { new: true, runValidators: true }, (err, usuarioDB) => {
         if (err) {
             return res.status(400).json({
@@ -123,6 +121,16 @@ app.delete('/usuario/:id', [verificarToken, verificaRol], (req, res) => {
         });
 
     });
+});
+
+app.post('/google', (req, res) => {
+
+    let token = req.body.idtoken;
+
+    res.json({
+        token
+    });
+
 });
 
 module.exports = app;

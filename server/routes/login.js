@@ -5,6 +5,9 @@ const Usuario = require('../models/usuario');
 const res = require('express/lib/response');
 const app = express();
 
+const { OAuthService } = require('google-auth-library');
+const client = new OAuthService(CLIENT_ID);
+
 app.post('/login', (req, resp) => {
     let body = req.body;
 
